@@ -18,23 +18,63 @@
 		$username = "pelodie";
 		$password = "pelodie@2017";
 
+
 		try {
+		    $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+		    // set the PDO error mode to exception
+		    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		 	$requete = htmlspecialchars($_POST['requete']);
+		   
 
-	    $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-	    // set the PDO error mode to exception
-	    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	 	$requete = htmlspecialchars($_POST['requete']);
-	    
+		    $stmt = $conn->prepare("SELECT COUNT(id) AS nombre FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ") or die (mysql_error());
+		    $stmt->bindParam(':requete', $requete);
+		    $stmt->execute();
+		    $results=$stmt->fetch();
+		 	echo "<p>Il y a ".$results['nombre'];
+		 	
+		 	$articlesparpage=8;
+		 	$articles=$stmt->fetch(PDO::FETCH_ASSOC);
+		 	$totaldesarticles=$articles['id'];
+		 	$nombredepage=ceil($totaldesarticles/$articlesparpage);
+			
+		
 
-	    $stmt = $conn->prepare("SELECT * FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%')  ") or die (mysql_error());
-	    $stmt->bindParam(':requete', $requete);
-	    $stmt->execute();
+			for ($i=1;$i<= $nombredepage;$i++){
+  			  echo '<li><a href="http://vesoul.codeur.online/front/pelodie/museefenec/rechercher.php?page=' . $i . '">' . $i . '</a></li>';
+  			}
+	   	
+
+  			if (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page']>0 && $_GET['page']<= $nombredepage)
+			{
+			        $page=intval($_GET['page']);
+			}
+			else
+			{
+			        $page=1;
+			}
 
 
-	    $results=$stmt->fetchAll();
+			$premierarticleafficher=$page*$articlesparpage-$articlesparpage;
 
-	    $nb_resultats = $stmt->rowCount();
+		    $reponse = $conn->prepare("SELECT * FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ORDER BY `id` DESC LIMIT :offset, :id") or die (mysql_error());
+		    $reponse->bindParam(':requete', $requete);
+		    $reponse->bindParam(':id', $articlesparpage);
+			$reponse->bindParam(':offset', $premierarticleafficher);
 
+		    $reponse->execute();
+		    
+		    // $results=$reponse->fetchAll();
+		    // $nb_resultats = $reponse->rowCount();
+
+
+
+		    if($results['nombre'] > 1) { 
+			 	echo " résultats pour la recherche ".$requete; 
+
+			} else { 
+				echo " résultat pour la recherche ".$requete;
+			}
+			".</p>";
 	    }
 
 		catch(PDOException $e) {
@@ -42,50 +82,16 @@
 	   	}
 
 	   	// afficher le nombre de résultats
-		echo "<p>Il y a ".$nb_resultats;
-		 	 
-			if($nb_resultats > 1) { 
-			 	echo " résultats pour la recherche ".$requete; 
-
-			} else { 
-				echo " résultat pour la recherche ".$requete;
-			}
-			".</p>";
+		
 
 			// afficher les titres et photos en fonction des résultats
-			foreach ($results as $result){
-			$adr_img = $result['lien_image'];
-			echo "<div><p>".$result['nom_du_musee']."</p></div>";
-			echo "<div><img src='".$adr_img."'></div>";
-			}
-		
-
-
-
-			//test pagination
-			$messagesParPage=5; //Nous allons afficher 5 messages par page.
-	 
-		
-			$retour_total=mysql_query('SELECT COUNT(*) AS total FROM musee LIMIT 4' ); //Nous récupérons le contenu de la requête dans $retour_total
-			$donnees_total=mysql_fetch_assoc($retour_total); //On range retour sous la forme d'un tableau.
-			$total=$donnees_total['lien_image']; //On récupère le total pour le placer dans la variable $total.
-			 
-			//Nous allons maintenant compter le nombre de pages.
-			$nombreDePages=ceil($total/$messagesParPage);
-			 
-			if(isset($_GET[''])) // Si la variable $_GET['page'] existe...
-			{
-			     $pageActuelle=intval($_GET['page']);
-			 
-			     if($pageActuelle>$nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
-			     {
-			          $pageActuelle=$nombreDePages;
-			     }
-			}
-			else // Sinon
-			{
-			     $pageActuelle=1; // La page actuelle est la n°1    
-			}
+			// foreach ($results as $result){
+			// $adr_img = $result['lien_image'];
+			// echo "<div><p>".$result['nom_du_musee']."</p></div>";
+			// echo "<div><img src='".$adr_img."'></div>";
+			// }
+	
+			
 		}
 	?>	 
 </body>
