@@ -95,7 +95,7 @@
 	 		<h2><?=$musee['nom_du_musee'] ?></h2>
 	 		<img src="<?=$musee['lien_image']?>"; 
 	 	</div> </hr>
-
+ 
 	 	<?php endforeach;
 
 	 	for ($i=1; $i <= $totalParPage; $i++) { 
