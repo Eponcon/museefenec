@@ -6,93 +6,168 @@
 
 <body>
 	<a href="index.php">Accueil</a>
-	<form action="rechercher.php" method="Post">
+	<form action="rechercher.php" method="GET">
 		<input type="text" name="requete" size="10">
 		<input type="submit" value="Ok">
 	</form>
 
 	<?php
-		if(isset($_POST['requete']) && $_POST['requete'] != NULL) {  // on vérifie d'abord l'existence du POST et aussi si la requete n'est pas vide.
-
+		
 		$servername = "localhost";
 		$username = "pelodie";
 		$password = "pelodie@2017";
 
+	 	
 
-		try {
-		    $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-		    // set the PDO error mode to exception
-		    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		 	$requete = htmlspecialchars($_POST['requete']);
-		   
+	 	if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
-		    $stmt = $conn->prepare("SELECT COUNT(id) AS nombre FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ") or die (mysql_error());
-		    $stmt->bindParam(':requete', $requete);
-		    $stmt->execute();
-		    $results=$stmt->fetch();
-		 	echo "<p>Il y a ".$results['nombre'];
+	 		$keyword = $_GET['requete'];
+
+	 		if (isset($_GET['page'])){
+
+	 			$page =$_GET['page'];
+	 		
+	 		}else{
+
+	 			$page=1;
+	 		}
+
+	 		$nbParPage = 8;
+	 		$count = ($page-1)*$nbParPage;
+
+	 		try {
+
+			    $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+			    $stmt = $conn->prepare("SELECT COUNT(id) as nbMusee FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ORDER BY id DESC LIMIT 0,8 ") or die (mysql_error());
+			    $stmt->bindParam(':requete', $keyword);
+			    $stmt->execute();
+			    $result = $stmt->fetch();
+
+			    $totalRecherche = $result['nbMusee'];
+			    $totalParPage = ceil($totalRecherche/$nbParPage);
+
+
+			    $stmt = $conn->prepare("SELECT * FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ORDER BY id DESC LIMIT :count, :parPage ") or die (mysql_error());
+			     $stmt->bindParam(':requete', $keyword);
+			     $stmt->bindParam(':count', $count, PDO::PARAM_INT);
+			     $stmt->bindParam(':parPage', $nbParPage,  PDO::PARAM_INT);
+			     $stmt->execute();
+
+			     $musees=$stmt->fetchAll();
+			    }
+
+
+			    catch(PDOException $e) {
+		     	echo "Connection failed: " . $e->getMessage();
+		  		}
+	 	}
+
+	 	if (!empty($totalRecherche) && $totalRecherche>1){
+	 	echo " Il y a ".$totalRecherche." résultats pour la recherche  ".$keyword.".";
+
+		 	foreach ($musees as $musee):
 		 	
-		 	$articlesparpage=8;
-		 	$articles=$stmt->fetch(PDO::FETCH_ASSOC);
-		 	$totaldesarticles=$articles['id'];
-		 	$nombredepage=ceil($totaldesarticles/$articlesparpage);
+		 	?>
+
+		 	<div>
+		 		<h2><?=$musee['nom_du_musee'] ?></h2>
+		 		<img src="<?=$musee['lien_image']?>"; 
+		 	</div> </hr>
+
+		 	<?php endforeach;
+
+		 	for ($i=1; $i <= $totalParPage; $i++) { 
+		 		if($i == $page){
+		 			echo $i."/";
+		 		}else{
+		 			echo "<a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a>";
+		 		}
+		 	}
+
+	 	}else if(!empty($totalRecherche) && $totalRecherche=1 ) {
+	 	echo " Il y a ".$totalRecherche." résultat pour la recherche  ".$keyword.".";
+
+	 	foreach ($musees as $musee):
+	 	
+	 	?>
+
+	 	<div>
+	 		<h2><?=$musee['nom_du_musee'] ?></h2>
+	 		<img src="<?=$musee['lien_image']?>"; 
+	 	</div> </hr>
+
+	 	<?php endforeach;
+
+	 	for ($i=1; $i <= $totalParPage; $i++) { 
+	 		if($i == $page){
+	 			echo $i."/";
+	 		}else{
+	 			echo "<a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a>";
+	 		}
+	 	}
+
+	 	}else if(!empty($totalRecherche) && $totalRecherche==0){
+	 	echo " Il n'y a aucun résultat pour la recherche.";
+	 }
+
+
+		// condition vérifie que la requete n'est pas vide 
+		// if(isset($_GET['requete']) && $_GET['requete'] != NULL) {
+
+
+		// // connection à la base de données
+		// try {
+
+		// 	    $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+		// 	    // set the PDO error mode to exception
+		// 	    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		// 	 	$requete = htmlspecialchars($_GET['requete']);
+
+		// 	 	// requête pour le moteur de recherche
+		// 	 	$sql = $conn->prepare("SELECT COUNT(id) as nbMusee FROM musee");
+		// 	    $sql->execute();
+		// 	    $results2=$sql->fetch();
+		// 	   	$nbMusee =  $results2['nbMusee'];
+		// 	   	$nbMuseeParPage = 8;
+		// 	   	$nbPageCourante = 1;
+
+
+		// 	 	// requête pour le moteur de recherche
+			 	// $stmt = $conn->prepare("SELECT * FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ORDER BY id DESC LIMIT 0,8 ") or die (mysql_error());
+			  //   $stmt->bindParam(':requete', $requete);
+		// 	    $stmt->execute();
+		// 	    $results=$stmt->fetchAll();
 			
-		
-
-			for ($i=1;$i<= $nombredepage;$i++){
-  			  echo '<li><a href="http://vesoul.codeur.online/front/pelodie/museefenec/rechercher.php?page=' . $i . '">' . $i . '</a></li>';
-  			}
-	   	
-
-  			if (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page']>0 && $_GET['page']<= $nombredepage)
-			{
-			        $page=intval($_GET['page']);
-			}
-			else
-			{
-			        $page=1;
-			}
-
-
-			$premierarticleafficher=$page*$articlesparpage-$articlesparpage;
-
-		    $reponse = $conn->prepare("SELECT * FROM musee WHERE nom_dep LIKE CONCAT('%', :requete, '%') OR nom_du_musee LIKE CONCAT('%', :requete, '%') OR adresse LIKE CONCAT('%', :requete, '%') OR ville LIKE CONCAT('%', :requete, '%') OR nom_reg LIKE CONCAT('%', :requete, '%') OR cp LIKE CONCAT('%', :requete, '%') ORDER BY `id` DESC LIMIT :offset, :id") or die (mysql_error());
-		    $reponse->bindParam(':requete', $requete);
-		    $reponse->bindParam(':id', $articlesparpage);
-			$reponse->bindParam(':offset', $premierarticleafficher);
-
-		    $reponse->execute();
-		    
-		    // $results=$reponse->fetchAll();
-		    // $nb_resultats = $reponse->rowCount();
-
-
-
-		    if($results['nombre'] > 1) { 
-			 	echo " résultats pour la recherche ".$requete; 
-
-			} else { 
-				echo " résultat pour la recherche ".$requete;
-			}
-			".</p>";
-	    }
-
-		catch(PDOException $e) {
-	    	echo "Connection failed: " . $e->getMessage();
-	   	}
-
-	   	// afficher le nombre de résultats
-		
-
-			// afficher les titres et photos en fonction des résultats
-			// foreach ($results as $result){
-			// $adr_img = $result['lien_image'];
-			// echo "<div><p>".$result['nom_du_musee']."</p></div>";
-			// echo "<div><img src='".$adr_img."'></div>";
-			// }
-	
 			
-		}
+		//     }
+
+		// 	catch(PDOException $e) {
+		//     	echo "Connection failed: " . $e->getMessage();
+		//    	}
+
+
+		//    	var_dump($results);
+		//    	// echo- affichage des résultats
+		// 	 	echo "<p>Il y a ".$nbMusee;
+		 	
+		// 	 if($results['nombre'] > 1) { 
+		// 	 	echo " résultats pour la recherche ".$requete; 
+			 	
+
+		// 	} else { 
+		// 		echo " résultat pour la recherche ".$requete;
+		// 	}
+		// 	".</p>";
+
+			
+			
+			
+			
+			
+		// }
+
+
+
 	?>	 
 </body>
 </html>
