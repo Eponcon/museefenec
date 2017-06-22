@@ -18,11 +18,20 @@
     font-style: italic;
 }
 
+body {
+    font-family: 'bluu';
+    color: rgb(4, 4, 86);
+
+}
 
 .container-fluid {
     position: relative;
     height: 98.5vh;
     width: auto;
+}
+
+.container {
+    width: 1400px;
 }
 
 .paint {
@@ -56,7 +65,7 @@
 }
 
 .pixelimage1 {
-    background-image: url(../00-images/pixelate-3.JPG);
+    background-image: url(../00-images/pixelate-4.JPG);
     width: 500px;
     height: 365px;
     position: absolute;
@@ -64,13 +73,16 @@
     left: 17%;
 }
 
+.accueil {
+    margin-top: 5%;
+}
+
+
 h2 {
     position: absolute;
     z-index: 2;
     margin-top: 30%;
-    font-family: 'bluu';
     font-size: 50px;
-    color: rgb(4, 4, 86);
     background-color: white;
     padding: 5px;
 }
@@ -79,17 +91,20 @@ h2 {
     border-bottom: 3px solid rgb(4, 4, 86);
 }
 
-h3 {
+.cliquez {
+    color: #040456;
     position: absolute;
     z-index: 2;
-    margin-top: 50%;
-    margin-left: 60px; 
-    font-family: 'bluu';
+    margin-top: 42%;
+    margin-left: 9%; 
     font-size: 25px;
-    color: rgb(4, 4, 86);
     background-color: white;
     padding: 10px; 
     cursor: pointer;
+}
+.cliquez:hover{
+    color:#ff2335;
+    text-decoration: none;
 }
 
 #carre {
@@ -130,19 +145,19 @@ h3 {
 
 /*animation svg */
 @keyframes spin {
-	0% {
-		stroke: #DCF9F7;
-	}
-	37.5% {
-		stroke: #040456;
-	}
-	67.5% {
-		stroke: white;
-	}
-	100% {
-		stroke-dashoffset: 30000;
-		stroke: #ff2335;
-	}3
+    0% {
+        stroke: #040456;
+    }
+    37.5% {
+        stroke: #DCF9F7;
+    }
+    67.5% {
+        stroke: #ff2335;
+    }
+    100% {
+        stroke-dashoffset: 30000;
+        stroke: #040456;
+    }3
 }
 
 
@@ -153,7 +168,7 @@ polygon {
     stroke-dasharray: 200, 120, 5, 5;
     stroke-dashoffset: 0;
     stroke-linejoin: square;
-	animation: spin 200s infinite linear;
+    animation: spin 100s infinite linear;
 }
 rect {
     stroke: black;
@@ -162,7 +177,7 @@ rect {
     stroke-dasharray: 200, 120, 5, 5;
     stroke-dashoffset: 0;
     stroke-linejoin: square;
-	animation: spin 200s infinite linear;
+    animation: spin 100s infinite linear;
 }
 circle {
     stroke: black;
@@ -171,30 +186,167 @@ circle {
     stroke-dasharray: 200, 120, 5, 5;
     stroke-dashoffset: 0;
     stroke-linejoin: square;
-	animation: spin 200s infinite linear;
+    animation: spin 100s infinite linear;
 }
+
+/*page 1*/
+
+.selection {
+    font-size: 22px;
+    margin-top: 24%;
+}
+
+.vignette {
+    position: relative;
+    margin-top: 15%;
+}
+
+.imagefond {
+    position: absolute;
+}
+
+.imagemusee {
+    position: absolute;
+    z-index: 3;
+    margin-top: 7%;
+    margin-left: 7%;
+}
+
+.tiret {
+    font-size: 15px;
+    position: absolute;
+    margin-top: 70%;
+}
+
+.textmusee {
+    font-size: 16px;
+    position: relative;
+    margin-top: 85%;
+}
+
+.infos {
+    font-size: 12px;
+    position: absolute;
+    cursor: pointer;
+    color: #040456;
+}
+
+.infos:hover {
+    color: #ff2335;
+    text-decoration: none;
+}
+
+.vignette2 {
+    margin-top: 5%;
+}
+
+
 
 
 /*page2*/
 
+
 h4 {
+    color: #040456;
     position: absolute;
-    left: 60px;
-    top: 20px;
+    left: 3.5%;
+    margin-top: 1.5%;
     z-index: 2;
-    font-family: 'bluu';
-    font-size: 30px;
-    color: rgb(4, 4, 86);
+    font-size: 40px;
     background-color: white;
 }
 
-h6 {
+#formulaire {
     position: absolute;
-    font-family: 'bluu';
-    font-size: 25px;
-    color: rgb(4, 4, 86);
-    background-color: white;
+    margin-top: 15%;
 }
+
+
+.rechercher {
+    font-size: 20px;
+    color: #040456;
+    position: absolute;
+    margin-top: 29%;
+    margin-left: 12%;
+    border: 2px solid #040456;
+    padding: 10px;
+
+}
+
+.rechercher:hover{
+    color: #ff2335;
+    text-decoration: none;
+    border: 2px solid #ff2335;
+}
+
+
+#formulaire > input.rechercherinput {
+    font-size: 20px;
+    color: #ff2335;
+}
+
+#formulaire input:focus{
+    border: solid 3px #ff2335;
+}
+
+.rechercherinput {
+    border: solid 3px #ff2335;
+    width: 400px;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: 8%;
+}
+
+#ok {
+    background-color: white;
+    color: #040456;
+    border: solid 2px #040456;
+    text-transform: uppercase;
+    font-family: 'bluu';
+}
+
+#ok:hover{
+    background-color: #040456;
+    color: white;
+    cursor: pointer;
+}
+
+.asterisque {
+    position: absolute;
+    margin-top: 35%;
+}
+
+.page2 {
+    position: relative;
+    top: -5%;
+}
+
+h5 {
+    font-size: 22px;
+    color: #040456;
+    position: absolute;
+    margin-top: 15%;
+}
+
+h6 {
+    font-size: 22px;
+    color: #040456;
+    position: absolute;
+    margin-top: 28%;
+}
+
+.resulttxt {
+    position: absolute;
+    margin-top: 10%;
+}
+
+.museetxt {
+    font-size: 40px;
+    position: absolute;
+    border-left: 3px solid #040456;
+    padding-left: 12px;
+}
+
 
 
 
