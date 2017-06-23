@@ -24,6 +24,10 @@ body {
 
 }
 
+p {
+    margin: 0;
+}
+
 .container-fluid {
     position: relative;
     height: 98.5vh;
@@ -253,7 +257,6 @@ h4 {
     margin-top: 1.5%;
     z-index: 2;
     font-size: 40px;
-    background-color: white;
 }
 
 #formulaire {
@@ -331,23 +334,54 @@ h5 {
 h6 {
     font-size: 22px;
     color: #040456;
-    position: absolute;
-    margin-top: 28%;
+    margin-top: 15%;
 }
 
 .resulttxt {
-    position: absolute;
     margin-top: 10%;
 }
 
 .museetxt {
-    font-size: 40px;
-    position: absolute;
+    font-size: 32px;
     border-left: 3px solid #040456;
     padding-left: 12px;
+    margin-top: 12%;
+    margin-bottom: 82px;
 }
 
+.resultnb {
+    color: #ff2335;
+    margin-top: 1%;
+    font-size: 16px;
+}
 
+.retour {
+    font-size: 17px;
+    color: #040456;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 80%;
+}
 
+.retour:hover {
+    text-decoration: none;
+    color: #ff2335;  
+}
+
+body > div > div.background > div.container > a  {
+    margin-top: 20%;
+    margin-right: 20px;
+    color: red;
+}
+
+/*a:hover {
+    text-decoration: none;
+    color: #040456;
+}*/
+
+a:active {
+    color: #040456;
+     margin-right: 20px;
+}
 
 
