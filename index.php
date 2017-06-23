@@ -11,12 +11,12 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->query("SELECT * FROM musee  ORDER BY id DESC LIMIT 6");
 
-    }
+}
 
 catch(PDOException $e)
-    {
+{
     echo "Connection failed: " . $e->getMessage();
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,18 +28,18 @@ catch(PDOException $e)
     <body>
         <a href="rechercher.php">Recherche</a>
 
-		<?php                   
+        <?php                   
         while($col_musee = $stmt->fetch()) {
-        
-        $adr_img = $col_musee['lien_image'];
 
-        echo "<div>";
-        	echo "<img src='".$adr_img."'>";
+            $adr_img = $col_musee['lien_image'];
+
+            echo "<div>";
+            echo "<img src='".$adr_img."'>";
             echo "<div>".$col_musee['nom_du_musee']."</div>";
             echo "<div>".$col_musee['ville'].", ".$col_musee['cp']."</div>";
 
-        echo "</div>";
+            echo "</div>";
         }       
-    	?>      
+        ?>      
     </body>
 </html>

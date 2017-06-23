@@ -77,6 +77,49 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
             <div class="paint"></div>
             <div class="paint2"></div>
             <div class="background">
+               
+                               <div id ="carre">
+                    <svg version="1.1" id="carre" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 70 70" style="enable-background:new 0 0 70 70;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0{fill:none;stroke:#DCF9F7;stroke-width:4;stroke-miterlimit:10;}
+                        </style>
+                        <rect x="4" y="3.6" class="st0" width="61.8" height="61.8"/>
+                    </svg>
+                </div>
+
+
+                <div id="triangle">
+                    <svg version="1.1" id="triangle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 70 70" style="enable-background:new 0 0 70 70;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0{fill:none;stroke:#DCF9F7;stroke-width:4;stroke-miterlimit:10;}
+                        </style>
+                        <polygon class="st0" points="6.1,35.5 59.5,4.7 59.5,66.3 "/>
+                    </svg>
+                </div>
+
+
+                <div id ="cercle">
+                    <svg version="1.1" id="cercle" xmlns="http://www.w3.org/2000/svg"             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 70 70" style="enable-background:new 0 0 70 70;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0{fill:none;stroke:#DCF9F7;stroke-width:4;stroke-miterlimit:10;}
+                        </style>
+                        <circle class="st0" cx="34.8" cy="35.4" r="31.9"/>
+                    </svg>
+                </div>
+
+                <div id ="hexagone">
+                    <svg version="1.1" id="hexagone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 70 70" style="enable-background:new 0 0 70 70;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0{fill:none;stroke:#DCF9F7;stroke-width:4;stroke-miterlimit:10;}
+                        </style>
+                        <polygon class="st0" points="33.4,3.2 60.9,19.1 60.9,50.9 33.4,66.8 5.8,50.9 5.8,19.1 "/>
+                    </svg>
+                </div>
+                
 
                 <div class="row">
                     <div class="col-lg-6">
@@ -84,7 +127,7 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                         <h4>Annuaire des <span class="underligned">musées de France</span></h4>
                     </div>
                 </div>
-
+    </div>
 
                 <div class="container">
                     <div class="row">
@@ -111,6 +154,8 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                             <h6>&mdash; Liste des musées</h6>
                         </div>
                     </div>
+                    
+                    
 
 
 
@@ -170,11 +215,10 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
 
                     <div class="col-lg-2 col-lg-offset-10 ">
-                        <a class="retour" href="index.php">Retour à l'accueil</a>
+                        <a class="retour" href="selection.html">Retour à l'accueil</a>
                     </div>
                 </div>
             </div>
-        </div>
 
 
 
