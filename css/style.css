@@ -295,9 +295,10 @@ h4 {
     border: solid 3px #ff2335;
     width: 400px;
     height: 40px;
-    margin-right: 10px;
+    margin-right: 5px;
     margin-top: 8%;
 }
+
 
 #ok {
     background-color: white;
@@ -308,6 +309,7 @@ h4 {
 }
 
 #ok:hover{
+    border: solid 2px #040456;
     background-color: #040456;
     color: white;
     cursor: pointer;
@@ -346,6 +348,7 @@ h6 {
     padding-left: 12px;
     margin-top: 12%;
     margin-bottom: 100px;
+    cursor: pointer;
 }
 
 .resultnb {
@@ -359,6 +362,9 @@ h6 {
     font-size: 17px;
     color: #040456;
     cursor: pointer;
+    z-index: 3;
+    position: absolute;
+    margin-top: 57%;
 }
 
 .retour:hover {
@@ -366,32 +372,130 @@ h6 {
     color: #ff2335;  
 }
 
-/*
-.pagination {
-    margin-top: 20%;
 
+/*.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+z-index: 3;
+color: #040456;
+cursor: default;
+}*/
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #040456;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid transparent;
 }
-.pagination a{
+
+
+.pagination>li>a:hover {
+    color: #ff2335;
+    border: 1px solid transparent;
+}
+
+.pagination>.active>a {
+    background-color: transparent;
+    border: solid 1px #ff2335;
+    color: #040456;
+}
+
+.pagination>li>a:focus {
+    border: 1px solid transparent;
     color: #ff2335;
 }
 
-.pagination a:hover {
-
-    text-decoration: none;
-    color: #040456;
-}
-
-.pagination a:active {
-
-    color: #040456;
-}
-*/
-
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
     z-index: 3;
-    color: red;
+    color: #ff2335;
     cursor: default;
-    background-color: blue;
-    border-color: #337ab7;
+    border: 1px solid transparent;
+    background-color: transparent;
 }
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    background-color: transparent;
+}
+
+.modal-dialog {
+    width: 1000px;
+    height: 800px;
+}
+
+.modal-header {
+    border-bottom: 2px solid #040456;
+}
+
+.modal-content {
+    width: 950px;
+    height: 700px;
+}
+
+.close {
+    color: #ff2335;
+    font-size: 40px;
+}
+
+.modal-title {
+    color: #040456;
+    font-size: 30px;
+    text-align: center;
+}
+
+.siteweb {
+    font-size: 18px;
+}
+
+.sitemusee {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.adresse {
+    font-size: 18px;
+}
+
+.adressemusee {
+    font-size: 14px;
+}
+
+.ville {
+    font-size: 14px;
+}
+
+.tel {
+    font-size: 18px;
+}
+
+.telmusee {
+    font-size: 14px;
+}
+
+.horaires {
+    font-size: 18px;
+}
+
+.ouverture {
+    font-size: 14px;
+}
+
+.fermeture {
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -54,31 +54,23 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 <html lang="fr_FR">
     <head>
         <title> </title>
+        	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-        <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
+   
     </head>
 
     <body>
-
-
-
         <div class="container-fluid">
             <div class="paint"></div>
             <div class="paint2"></div>
             <div class="background">
-               
-                               <div id ="carre">
+
+                <div id ="carre">
                     <svg version="1.1" id="carre" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 70 70" style="enable-background:new 0 0 70 70;" xml:space="preserve">
                         <style type="text/css">
@@ -119,103 +111,12 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                         <polygon class="st0" points="33.4,3.2 60.9,19.1 60.9,50.9 33.4,66.8 5.8,50.9 5.8,19.1 "/>
                     </svg>
                 </div>
-                
+
 
                 <div class="row">
                     <div class="col-lg-6">
 
                         <h4>Annuaire des <span class="underligned">musées de France</span></h4>
-                    </div>
-                </div>
-    </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-9">
-                            <h5>&mdash; Rechercher un musée</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-9">
-                            <form id ="formulaire" action="rechercher.php" method="GET">
-                                <input class="rechercherinput" type="text" name="requete" size="10">
-                                <input id="ok" type="submit" value="Ok">
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-9">
-                            <p class="asterisque">* par département, musée, ville ou code postal</p>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-9">
-                            <h6>&mdash; Liste des musées</h6>
-                        </div>
-                    </div>
-                    
-                    
-
-
-
-                    <?php
-                    if (!empty($totalRecherche) && $totalRecherche>1){
-                        echo "<p class='resultnb'> Il y a ".$totalRecherche." résultats pour la recherche  ".$keyword.".</p>";
-                        echo "<div class='container'>";
-                        echo "<div class='row'>";
-                        foreach ($musees as $musee):
-
-                    ?>
-
-
-                    <div class="col-lg-6" style="height: 250px;">
-
-                        <div class="museetxt"><p><?=$musee['nom_du_musee'] ?></p></div> 
-                    </div>
-
-                    <?php endforeach;
-                        echo "</div>";
-                        echo "</div>";
-                        echo "<ul class='pagination'>";
-                        echo"<li><a href='#'>&laquo;</a></li>";
-
-                        for ($i=1; $i <= $totalParPage; $i++) { 
-                            if($i == $page){   
-                                if($totalRecherche <=4) {
-                                    echo "";
-                                } else {
-
-                                    echo "<li class='active'><a href='#'>$i</a></li>";
-                                }
-                            }else{
-                                echo "<li><a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a></li>";
-                            }
-                        }
-                        echo "<li><a href='#'>&raquo;</a></li>";
-                        echo "</ul>";
-
-                    }else if(!empty($totalRecherche) && $totalRecherche=1 ) {
-                        echo " Il y a ".$totalRecherche." résultat pour la recherche  ".$keyword.".";
-
-                        foreach ($musees as $musee):
-
-                    ?>
-
-                    <?php endforeach;
-
-                    }else {
-                        if(isset($totalRecherche)){
-                            if ($totalRecherche==0){
-                                echo " Aucun résultat pour la recherche.";
-                            }
-                        }
-                    }
-                    ?> 
-
-
-                    <div class="col-lg-2 col-lg-offset-10 ">
-                        <a class="retour" href="selection.html">Retour à l'accueil</a>
                     </div>
                 </div>
             </div>
@@ -225,50 +126,185 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
 
 
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-sm-offset-9">
+                        <h5>&mdash; Rechercher un musée</h5>
+                    </div>
 
 
-        <!--
-<div class="resulttxt">
-<div class="row">
--->
-
-        <!--
-<div class="col-xs-12 col-sm-6 vignette">
-<div class="museetxt">
-<p>Galerie d'Anatomie Comparée et de Paléontologie (Muséum d'Histoire Naturelle)</p>
-</div>
-</div>
-
-
-<div class="col-xs-12 col-sm-6 vignette">
-<div class="museetxt">
-<p>Musée du Louvre de Paris</p>
-</div>
-</div>
+                    <div class="col-xs-12 col-sm-4 col-sm-offset-9">
+                        <form id ="formulaire" action="rechercher.php" method="GET">
+                            <input class="rechercherinput" type="text" name="requete" size="10">
+                            <input id="ok" type="submit" value="Ok">
+                        </form>
+                    </div>
 
 
 
-<div class="container">
-<div class="row">
-<div class="col-xs-12 col-sm-6 vignette">
-<div class="museetxt">
-<p>Musées des Beaux-Arts de Besançon</p>
-</div>
-</div>
+                    <div class="col-xs-12 col-sm-4 col-sm-offset-9">
+                        <p class="asterisque">* par département, musée, ville ou code postal</p>
+                    </div>
 
-<div class="col-xs-12 col-sm-6 vignette">
-<div class="museetxt">
-<p>Musée des Arts-Déco de Strasbourg</p>
-</div>
-</div>
-</div>
-</div>
--->
-        <!--
-</div>    
-</div>
--->
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+                    <div class="col-xs-12 col-sm-3 col-sm-offset-9">
+                        <a class="retour" href="selection.html">&mdash; Retour à la sélection</a>
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-9">
+                        <h6>&mdash; Liste des musées</h6>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <?php
+                if (!empty($totalRecherche) && $totalRecherche>1){
+                    echo "<p class='resultnb'> Il y a ".$totalRecherche." résultats pour la recherche  ".$keyword.".</p>";
+                    echo "<div class='container'>";
+                    echo "<div class='row'>";
+                    
+                    foreach ($musees as $musee):
+
+                ?>
+      <!-- nom du musée qui s'affiche en résultat -->          
+
+        <div class="col-lg-6" style="height: 250px;">
+
+                <div type="button" class="btn-lg" data-toggle="modal" data-target="#myModal<?=$musee['id']?>"><p class="museetxt"><?=$musee['nom_du_musee'] ?></p></div> 
+        </div>
+	 		
+       
+        <!-- pour morgane la livebox sinon le lightbox -->   
+       
+        <div class="modal fade" id="myModal<?=$musee['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></h4>
+              </div>
+              <div class="modal-body">
+                 <img src="<?=$musee['lien_image']?>">
+                  <p class="siteweb">Site web :</p>
+                  <div class="sitemusee"><?=$musee['site_web']?></div>
+                   <p class="adresse">Adresse :</p>
+                   <div class="adressemusee"><?=$musee['adresse']?></div>
+                   <div class="ville"><?=$musee['ville']?></div>
+                   <div class="nomreg"><?=$musee['nom_reg']?></div>
+                    <p class="tel">Téléphone :</p>
+                   <div class="telmusee"><?=$musee['telephone']?></div>
+                   <p class="horaires">Horaires :</p> 
+                    <div class="ouverture"><?=$musee['periode_ouverture']?></div>
+                    <div class="fermeture"><?=$musee['fermeture_annuelle']?></div>
+              </div>
+            </div>
+          </div>
+        </div>
+	 			 			 		
+	 			 			 			 			 		
+	 	
+                <?php endforeach;
+                    echo "</div>";
+                    echo "</div>";
+ 
+                    echo "<ul class='pagination'>";
+                    if($totalRecherche >4){
+                        echo"<li><a href='#'>&laquo;</a></li>";
+                    }
+
+
+
+                    for ($i=1; $i <= $totalParPage; $i++) { 
+                        if($i == $page){   
+                            if($totalRecherche <=4) {
+                                echo "";
+                            } else {
+
+                                echo "<li class='active'><a href='#'>$i</a></li>";
+                            }
+                        }else{
+                            echo "<li><a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a></li>";
+                        }
+                    }
+                    if($totalRecherche >4){
+                        echo "<li><a href='#'>&raquo;</a></li>";
+                    }
+                    echo "</ul>";
+
+
+                }else if(!empty($totalRecherche) && $totalRecherche=1 ) {
+                    echo " Il y a ".$totalRecherche." résultat pour la recherche  ".$keyword.".";
+
+                    foreach ($musees as $musee):
+
+                ?>
+                
+                <div class="col-lg-6" style="height: 250px;">
+                <div type="button" class="btn-lg" data-toggle="modal" data-target="#myModal"><p class="museetxt"><?=$musee['nom_du_musee'] ?></p></div>
+                </div>
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></p>
+                  </div>
+                  <div class="modal-body">
+                     <img src="<?=$musee['lien_image']?>">
+                      <p>Site web :</p>
+                      <div><?=$musee['site_web']?></div>
+                       <p>Adresse :</p>
+                       <div><?=$musee['adresse']?></div>
+                       <div><?=$musee['ville']?></div>
+                       <div><?=$musee['nom_reg']?></div>
+                        <p>Téléphone :</p>
+                       <div><?=$musee['telephone']?></div>
+                       <p>Horaire :</p>
+                        <div><?=$musee['periode_ouverture']?></div>
+                        <div><?=$musee['fermeture_annuelle']?></div>
+                  </div>
+                  <div class="modal-footer">                   
+                  </div>
+                </div>
+              </div>
+            </div>
+               
+               
+                <?php endforeach;
+
+                }else {
+                    if(isset($totalRecherche)){
+                        if ($totalRecherche==0){
+                            echo " Aucun résultat pour la recherche.";
+                        }
+                    }
+                }
+                ?> 
+
+
+
+            </div>
+        </div>
+        
+
+   
+         <script
+          src="https://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous"></script>
+            
+         <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+       
 
 
     </body>
