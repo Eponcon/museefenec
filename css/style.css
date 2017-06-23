@@ -342,11 +342,11 @@ h6 {
 }
 
 .museetxt {
-    font-size: 32px;
+    font-size: 40px;
     border-left: 3px solid #040456;
     padding-left: 12px;
     margin-top: 12%;
-    margin-bottom: 82px;
+    margin-bottom: 100px;
 }
 
 .resultnb {
@@ -355,12 +355,11 @@ h6 {
     font-size: 16px;
 }
 
+
 .retour {
     font-size: 17px;
     color: #040456;
     cursor: pointer;
-    position: absolute;
-    margin-top: 80%;
 }
 
 .retour:hover {
@@ -368,20 +367,32 @@ h6 {
     color: #ff2335;  
 }
 
-body > div > div.background > div.container > a  {
+/*
+.pagination {
     margin-top: 20%;
-    margin-right: 20px;
-    color: red;
+
+}
+.pagination a{
+    color: #ff2335;
 }
 
-/*a:hover {
+.pagination a:hover {
+
     text-decoration: none;
     color: #040456;
-}*/
-
-a:active {
-    color: #040456;
-     margin-right: 20px;
 }
 
+.pagination a:active {
+
+    color: #040456;
+}
+*/
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: red;
+    cursor: default;
+    background-color: blue;
+    border-color: #337ab7;
+}
 

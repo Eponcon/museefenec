@@ -117,28 +117,38 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                     <?php
                     if (!empty($totalRecherche) && $totalRecherche>1){
                         echo "<p class='resultnb'> Il y a ".$totalRecherche." résultats pour la recherche  ".$keyword.".</p>";
-
+                        echo "<div class='container'>";
+                        echo "<div class='row'>";
                         foreach ($musees as $musee):
 
                     ?>
 
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" style="height: 250px;">
+
                         <div class="museetxt"><p><?=$musee['nom_du_musee'] ?></p></div> 
                     </div>
 
-
-
-
                     <?php endforeach;
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<ul class='pagination'>";
+                        echo"<li><a href='#'>&laquo;</a></li>";
 
                         for ($i=1; $i <= $totalParPage; $i++) { 
-                            if($i == $page){
-                                echo $i."/";
+                            if($i == $page){   
+                                if($totalRecherche <=4) {
+                                    echo "";
+                                } else {
+
+                                    echo "<li class='active'><a href='#'>$i</a></li>";
+                                }
                             }else{
-                                echo "<a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a>";
+                                echo "<li><a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a></li>";
                             }
                         }
+                        echo "<li><a href='#'>&raquo;</a></li>";
+                        echo "</ul>";
 
                     }else if(!empty($totalRecherche) && $totalRecherche=1 ) {
                         echo " Il y a ".$totalRecherche." résultat pour la recherche  ".$keyword.".";
@@ -147,22 +157,8 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
                     ?>
 
-                    <div class="resulttxt col-lg-6">
-                        <div class="museetxt"><p><?=$musee['nom_du_musee'] ?></p></div> 
-                    </div>
-
-
-
-
                     <?php endforeach;
 
-                        /*          for ($i=1; $i <= $totalParPage; $i++) { 
-                        if($i == $page){
-                            echo $i." ";
-                        }else{
-                            echo "<a href=\"rechercher.php?requete=$keyword&page=$i\">$i</a>";
-                        }
-                    }*/
                     }else {
                         if(isset($totalRecherche)){
                             if ($totalRecherche==0){
@@ -170,12 +166,11 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                             }
                         }
                     }
-                    ?>  
+                    ?> 
 
-                    <div class="row">
-                        <div class="col-lg-2 col-lg-offset-10">
-                            <a class="retour" href="index.php">Retour à l'accueil</a>
-                        </div>
+
+                    <div class="col-lg-2 col-lg-offset-10 ">
+                        <a class="retour" href="index.php">Retour à l'accueil</a>
                     </div>
                 </div>
             </div>
