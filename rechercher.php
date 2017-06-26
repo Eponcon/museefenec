@@ -50,18 +50,19 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="fr_FR">
     <head>
-        <title> </title>
-        	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>Annuaire des musées de France</title>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/style.css">
-   
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
@@ -114,17 +115,12 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-6">
 
                         <h4>Annuaire des <span class="underligned">musées de France</span></h4>
                     </div>
                 </div>
             </div>
-
-
-
-
-
 
             <div class="container">
                 <div class="row">
@@ -149,7 +145,7 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
 
                     <div class="col-xs-12 col-sm-3 col-sm-offset-9">
-                        <a class="retour" href="selection.html">&mdash; Retour à la sélection</a>
+                        <a class="retour" href="selection.php">&mdash; Retour à la sélection</a>
                     </div>
 
 
@@ -159,60 +155,74 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 
                 </div>
 
-
-
-
-
                 <?php
                 if (!empty($totalRecherche) && $totalRecherche>1){
                     echo "<p class='resultnb'> Il y a ".$totalRecherche." résultats pour la recherche  ".$keyword.".</p>";
                     echo "<div class='container'>";
                     echo "<div class='row'>";
-                    
+
                     foreach ($musees as $musee):
 
                 ?>
-      <!-- nom du musée qui s'affiche en résultat -->          
+                <!-- nom du musée qui s'affiche en résultat -->          
 
-        <div class="col-lg-6" style="height: 250px;">
+                <div class="col-lg-6" style="height: 250px;">
 
-                <div type="button" class="btn-lg" data-toggle="modal" data-target="#myModal<?=$musee['id']?>"><p class="museetxt"><?=$musee['nom_du_musee'] ?></p></div> 
-        </div>
-	 		
-       
-        <!-- pour morgane la livebox sinon le lightbox -->   
-       
-        <div class="modal fade" id="myModal<?=$musee['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></h4>
-              </div>
-              <div class="modal-body">
-                 <img src="<?=$musee['lien_image']?>">
-                  <p class="siteweb">Site web :</p>
-                  <div class="sitemusee"><?=$musee['site_web']?></div>
-                   <p class="adresse">Adresse :</p>
-                   <div class="adressemusee"><?=$musee['adresse']?></div>
-                   <div class="ville"><?=$musee['ville']?></div>
-                   <div class="nomreg"><?=$musee['nom_reg']?></div>
-                    <p class="tel">Téléphone :</p>
-                   <div class="telmusee"><?=$musee['telephone']?></div>
-                   <p class="horaires">Horaires :</p> 
-                    <div class="ouverture"><?=$musee['periode_ouverture']?></div>
-                    <div class="fermeture"><?=$musee['fermeture_annuelle']?></div>
-              </div>
-            </div>
-          </div>
-        </div>
-	 			 			 		
-	 			 			 			 			 		
-	 	
+                    <div type="button" class="btn-lg" data-toggle="modal" data-target="#myModal<?=$musee['id']?>"><p class="museetxt"><?=$musee['nom_du_musee'] ?></p></div> 
+                </div>
+
+
+                <!-- pour morgane la livebox sinon le lightbox -->   
+
+                <div class="modal fade" id="myModal<?=$musee['id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="row">
+                                    <div class="col-lg-11">
+                                        <h4 class=" modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></h4>
+                                    </div>
+                                    
+                                    <div class="col-lg-1">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <img src="<?=$musee['lien_image']?>">
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <p class="siteweb">Site web :</p>
+                                        <div class="sitemusee"><?=$musee['site_web']?></div>
+                                        <p class="adresse">Adresse :</p>
+                                        <div class="adressemusee"><?=$musee['adresse']?></div>
+                                        <div class="ville"><?=$musee['ville']?></div>
+                                        <div class="nomreg"><?=$musee['nom_reg']?></div>
+                                    </div>
+                                    <div class="col-lg-4">
+
+                                        <p class="tel">Téléphone :</p>
+                                        <div class="telmusee"><?=$musee['telephone']?></div>
+                                        <p class="horaires">Horaires :</p> 
+                                        <div class="ouverture"><?=$musee['periode_ouverture']?></div>
+                                        <div class="fermeture"><?=$musee['fermeture_annuelle']?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <?php endforeach;
                     echo "</div>";
                     echo "</div>";
- 
+
                     echo "<ul class='pagination'>";
                     if($totalRecherche >4){
                         echo"<li><a href='#'>&laquo;</a></li>";
@@ -244,40 +254,40 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                     foreach ($musees as $musee):
 
                 ?>
-                
+
                 <div class="col-lg-6" style="height: 250px;">
-                <div type="button" class="btn-lg" data-toggle="modal" data-target="#myModal"><p class="museetxt"><?=$musee['nom_du_musee'] ?></p></div>
+                    <div type="button" class="btn-lg" data-toggle="modal" data-target="#myModal"><p class="museetxt"><?=$musee['nom_du_musee'] ?></p></div>
                 </div>
 
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <p class="modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></p>
-                  </div>
-                  <div class="modal-body">
-                     <img src="<?=$musee['lien_image']?>">
-                      <p>Site web :</p>
-                      <div><?=$musee['site_web']?></div>
-                       <p>Adresse :</p>
-                       <div><?=$musee['adresse']?></div>
-                       <div><?=$musee['ville']?></div>
-                       <div><?=$musee['nom_reg']?></div>
-                        <p>Téléphone :</p>
-                       <div><?=$musee['telephone']?></div>
-                       <p>Horaire :</p>
-                        <div><?=$musee['periode_ouverture']?></div>
-                        <div><?=$musee['fermeture_annuelle']?></div>
-                  </div>
-                  <div class="modal-footer">                   
-                  </div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <p class="modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></p>
+                            </div>
+                            <div class="modal-body">
+                                <img src="<?=$musee['lien_image']?>">
+                                <p>Site web :</p>
+                                <div><?=$musee['site_web']?></div>
+                                <p>Adresse :</p>
+                                <div><?=$musee['adresse']?></div>
+                                <div><?=$musee['ville']?></div>
+                                <div><?=$musee['nom_reg']?></div>
+                                <p>Téléphone :</p>
+                                <div><?=$musee['telephone']?></div>
+                                <p>Horaire :</p>
+                                <div><?=$musee['periode_ouverture']?></div>
+                                <div><?=$musee['fermeture_annuelle']?></div>
+                            </div>
+                            <div class="modal-footer">                   
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-               
-               
+
+
                 <?php endforeach;
 
                 }else {
@@ -288,23 +298,17 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                     }
                 }
                 ?> 
-
-
-
             </div>
         </div>
-        
 
-   
-         <script
-          src="https://code.jquery.com/jquery-3.2.1.js"
-          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-          crossorigin="anonymous"></script>
-            
-         <!-- Latest compiled and minified JavaScript -->
+     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+     
+   <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+     
 
-       
+
 
 
     </body>

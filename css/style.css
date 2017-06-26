@@ -163,7 +163,6 @@ h2 {
     }3
 }
 
-
 polygon {
     stroke: black;
     stroke-linecap: square;
@@ -199,20 +198,40 @@ circle {
     margin-top: 24%;
 }
 
-.vignette {
-    position: relative;
-    margin-top: 15%;
+.aleatoire {
+    margin-top: 10%;
 }
 
-.imagefond {
-    position: absolute;
+.ligne1 {
+    height: 250px;
 }
 
-.imagemusee {
+.btn-lg1 {
     position: absolute;
-    z-index: 3;
-    margin-top: 7%;
-    margin-left: 7%;
+    margin-top: 30%; 
+    width: 80%;
+}
+
+.btn-lg1 h2 {
+    cursor: pointer;
+    font-size: 25px;
+    background-color: white;
+    border-left: 2px solid #040456;
+    padding-left: 10px;
+    margin-left: 38px;
+    margin-top: 20%;
+}
+
+.btn-lg h2:hover{
+color: #ff2335;
+}
+
+.cadretexte1 {
+    margin-top: 10%;
+}
+
+.cadretexte2 {
+    margin-top: 30%;
 }
 
 .tiret {
@@ -239,12 +258,6 @@ circle {
     text-decoration: none;
 }
 
-.vignette2 {
-    margin-top: 5%;
-}
-
-
-
 
 /*page2*/
 
@@ -268,6 +281,7 @@ h4 {
     font-size: 20px;
     color: #040456;
     position: absolute;
+    z-index: 3;
     margin-top: 29%;
     margin-left: 12%;
     border: 2px solid #040456;
@@ -352,6 +366,8 @@ h6 {
 }
 
 .resultnb {
+    position: absolute;
+    z-index: 3;
     color: #ff2335;
     margin-top: 1%;
     font-size: 16px;
@@ -420,6 +436,10 @@ cursor: default;
     background-color: transparent;
 }
 
+/*
+lightebox
+*/
+
 .modal-dialog {
     width: 1000px;
     height: 800px;
@@ -427,11 +447,12 @@ cursor: default;
 
 .modal-header {
     border-bottom: 2px solid #040456;
+    height: 100px;
 }
 
 .modal-content {
     width: 950px;
-    height: 700px;
+    height: 800px;
 }
 
 .close {
@@ -442,49 +463,79 @@ cursor: default;
 .modal-title {
     color: #040456;
     font-size: 30px;
-    text-align: center;
+    text-align: center; 
+}
+.modal-body {
+    margin-top: 20px;
 }
 
 .siteweb {
-    font-size: 18px;
+    font-size: 21px;
+     margin-bottom: 3px;
+    margin-top: 7px;
 }
 
 .sitemusee {
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .adresse {
-    font-size: 18px;
+    font-size: 21px;
+    margin-bottom: 3px;
+    margin-top: 7px;
 }
 
 .adressemusee {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .ville {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .tel {
-    font-size: 18px;
+    font-size: 21px;
+    margin-bottom: 3px;
+    margin-top: 7px;
 }
 
 .telmusee {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .horaires {
-    font-size: 18px;
+    font-size: 21px;
+    margin-bottom: 3px;
+    margin-top: 7px;
 }
 
 .ouverture {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .fermeture {
-    font-size: 14px;
+    font-size: 16px;
 }
+
+
+
+/*************** MEDIA QUERIES **********************/
+
+
+
+@media only screen and (max-width : 543px) {
+}
+
+@media screen and (min-width: 544px) and (max-width: 767px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    
+}
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+}
+
 
 
 

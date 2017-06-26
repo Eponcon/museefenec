@@ -37,7 +37,6 @@ catch(PDOException $e)
             echo "<img src='".$adr_img."'>";
             echo "<div>".$col_musee['nom_du_musee']."</div>";
             echo "<div>".$col_musee['ville'].", ".$col_musee['cp']."</div>";
-
             echo "</div>";
         }       
         ?>      
