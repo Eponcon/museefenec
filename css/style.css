@@ -440,6 +440,23 @@ cursor: default;
 lightebox
 */
 
+.web {
+    border-left: 2px solid #040456;
+    padding-left: 10px;
+}
+.divadresse {
+    border-left: 2px solid #040456;
+    padding-left: 10px;
+}
+.heures {
+    border-left: 2px solid #040456;
+    padding-left: 10px;
+}
+.telephone {
+    border-left: 2px solid #040456;
+    padding-left: 10px;
+}
+
 .modal-dialog {
     width: 1000px;
     height: 800px;

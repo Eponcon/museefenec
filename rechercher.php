@@ -55,7 +55,7 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
 <html lang="fr_FR">
     <head>
         <title>Annuaire des musées de France</title>
-        
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -182,7 +182,7 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                                     <div class="col-lg-11">
                                         <h4 class=" modal-title" id="myModalLabel"><?=$musee['nom_du_musee'] ?></h4>
                                     </div>
-                                    
+
                                     <div class="col-lg-1">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
@@ -195,20 +195,28 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <p class="siteweb">Site web :</p>
-                                        <div class="sitemusee"><?=$musee['site_web']?></div>
-                                        <p class="adresse">Adresse :</p>
-                                        <div class="adressemusee"><?=$musee['adresse']?></div>
-                                        <div class="ville"><?=$musee['ville']?></div>
-                                        <div class="nomreg"><?=$musee['nom_reg']?></div>
+                                        <div class="web">
+                                            <p class="siteweb">Site web :</p>
+                                            <div class="sitemusee"><?=$musee['site_web']?></div>
+                                        </div>
+                                        <div class="divadresse">
+                                            <p class="adresse">Adresse :</p>
+                                            <div class="adressemusee"><?=$musee['adresse']?></div>
+                                            <div class="ville"><?=$musee['ville']?></div>
+                                            <div class="nomreg"><?=$musee['nom_reg']?></div>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-4">
 
-                                        <p class="tel">Téléphone :</p>
-                                        <div class="telmusee"><?=$musee['telephone']?></div>
-                                        <p class="horaires">Horaires :</p> 
-                                        <div class="ouverture"><?=$musee['periode_ouverture']?></div>
-                                        <div class="fermeture"><?=$musee['fermeture_annuelle']?>
+                                    <div class="col-lg-4">
+                                        <div class="telephone">
+                                            <p class="tel">Téléphone :</p>
+                                            <div class="telmusee"><?=$musee['telephone']?></div>
+                                        </div>
+                                        <div class="heures">
+                                            <p class="horaires">Horaires :</p> 
+                                            <div class="ouverture"><?=$musee['periode_ouverture']?></div>
+                                            <div class="fermeture"><?=$musee['fermeture_annuelle']?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -301,12 +309,12 @@ if (!empty($_GET['requete']) && isset($_GET['requete']) ){
             </div>
         </div>
 
-     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-     
-   <!-- Latest compiled and minified JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
-     
+
+
 
 
 
